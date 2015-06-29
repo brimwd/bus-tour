@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>OsteoReady Bus Tour</title>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<style>
+html, body {margin:0;padding:0;font-family:'Open Sans',sans-serif;line-height:1.6em;font-size:15px;}
+header {padding:0 20px;font-size:24px;}
+header article {padding:0;}
+header article a {display:inline-block;padding:5px;}
+header, #footer {background-color:white;}
+#intro {background-color:black;background-image:url('images/footer_lodyas.png');color:#80c1e9;text-align:center;font-size:24px;line-height:1.6em;}
+#intro article {margin:0 5%;}
+#intro h1 {font-size:72px;color:#fff156;text-transform:uppercase;font-weight:normal;line-height:1em;margin:.5em 0;}
+#intro h2 {line-height:1.2em;margin:.5em 0;}
+#intro p {margin:.5em auto;max-width:900px;}
+#intro p.small {font-size:18px;color:#DFF3FF;line-height:1.2em;}
+#intro p:first-of-type {font-style:italic;}
+
+#procedures {border-bottom:4px solid #0e4367;}
+#procedures article {padding:0;max-width:100%;margin:0;background-color:#EFEFEF;}
+#procedures h1 {text-align:center;color:#1a6da0;margin:0;padding:1em 0;border-bottom:1px solid white;font-size:24px;}
+#procedures h3 {text-align:center;background-color:#1a6da0;color:white;margin:0;padding:1em 0;border-bottom:1px solid white;cursor:pointer;}
+#procedures h3 sup {line-height:.8em;}
+#procedures h3:last-of-type {border:none;}
+#procedures h3:hover {background-color:#82bf4e;}
+#procedures article > div {margin:0;}
+#procedures ol {text-align:left;margin:0 auto;max-width:800px;margin-top:20px;padding-bottom:20px;}
+
+.steps {position:relative;margin-bottom:10px;text-align:center;}
+.steps aside {background-color:white;padding:1em 0;}
+.step-cont{height:auto;margin:0;padding:0;text-align:center;display:inline-block;}
+.no-drill .step-cont {width:24%;}
+.one-drill .step-cont {width:19%;}
+.osteohybrid .step-cont {width:32%;}
+.osteolift .step-cont {width:49%;}
+
+#overview {max-width:1200px;width:100%;margin:0 auto;text-align:center;}
+#overview article {width:44%;padding:20px 2%;margin:0 auto;display:inline-block;vertical-align:top;}
+#instructor img {max-width:100%;}
+#instructor {text-align:center;}
+#course h3, #course p {text-align:left;}
+#course span {display:inline-block;background-color:#82bf4e;color:white;padding:8px;border-radius:8px;max-width:30%;text-align:center;margin-right:20px;vertical-align:middle;font-size:18px;}
+#course img {max-width:100px;vertical-align:middle;margin-bottom:15px;}
+
+#CE {background-color:#fff156;padding:30px;}
+#CE h3 {max-width:800px;color:#333;margin:0 auto;text-align:center;}
+#tour {padding-top:0;}
+
+article {max-width:90%;margin:0;padding:2.1em 0;}
+
+#footer {text-align:center;color:white;background-color:#1a6da0;padding:1px;}
+#footer a{color:white;}
+
+@media(max-width:800px){
+	header {padding:0;}
+	article {max-width:90%;}
+	.steps img {max-width:100%;}
+	#overview article {display:block;width:82%;}
+	#overview #course {padding:0;}
+	#course p:first-of-type {margin-top:0;}
+}
+@media(max-width:600px), only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : portrait) , only screen and (min-device-width : 414px) and (max-device-width : 736px) and (orientation : portrait) , only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : portrait), only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) {
+	#intro h1 {margin:.25em 0;}
+	.steps img {max-height:80px;}
+	#instructor img {float:right;max-width:140px;margin:1em;margin-right:0;}
+	#instructor p, #instructor h3 {margin-left:inherit;}
+}
+@media(min-width:800px){
+	.step-cont {width:auto !important;margin:0 1.5em;}
+}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-38224745-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Facebook Conversion Code for This is a Test -->
+<script>(function() {
+  var _fbq = window._fbq || (window._fbq = []);
+  if (!_fbq.loaded) {
+    var fbds = document.createElement('script');
+    fbds.async = true;
+    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(fbds, s);
+    _fbq.loaded = true;
+  }
+})();
+window._fbq = window._fbq || [];
+window._fbq.push(['track', '6029633079775', {'value':'0.01','currency':'USD'}]);
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6029633079775&amp;cd[value]=0.01&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
+</head>
+<body>
+<header><article><a href="https://osteoready.com/"><img src="https://osteoready.com/sites/default/files/osteoready_logo-final.png" height="60"/></a></article></header>
+
+<section id="intro">
+	<article>
+		<h1>Thank you for registering!</h1>
+		<h2>Simplified &amp; Efficient Implant Placement for the GP</h2>
+		<p>The Top 4 Minimally-Invasive Procedures</p>
+		<p>Find out how dentists across the country are reinvigorating their practices by quickly and efficiently placing a large number of implants.</p>
+		<p class="small">You'll walk away with 2 CE credits and receive a comprehensive introduction on efficient implants for the general practitioner. Get tailored feedback to your implant technique questions and enjoy a bite of food while you're at it!</p>
+	</article>
+</section>
+
+<section id="procedures">
+	<article>
+	<h1>Study session topics include:</h1>
+	<h3>The No-Drill Implant Procedure</h3>
+	<div class="steps first no-drill">
+		<aside>
+		<div class="step-cont"><img class="media-image step-img" id="step1" src="http://osteoready.com/sites/default/files/OsteoConverter-graphics-01.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step2" src="http://osteoready.com/sites/default/files/OsteoConverter-graphics-02.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step3" src="http://osteoready.com/sites/default/files/OsteoConverter-graphics-03.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step4" src="http://osteoready.com/sites/default/files/OsteoConverter-graphics-04.png"></div>
+		</aside>
+		<ol>
+		<li>Any unrestorable tooth necessitating an extraction.</li>
+		<li>The Osteoconverter<sup>&trade;</sup> is threaded into the socket, acting as both an osteotome and bone condenser.</li>
+		<li><strong>The socket is prepared for an implant three ways:</strong></li>
+			<ol>
+				<li>Converts socket curves and irregularities into a suitable implant site</li>
+				<li>Scores the internal socket wall in 1mm increments providing optimal blood flow for implant healing</li>
+				<li>Expands bone to provide ideal initial implant stability (45Ncm to 65Ncm on average)</li>
+			</ol>
+		<li>The Osteoconverter<sup>&trade;</sup> can also act as an implant. It may be left in the socket as the final implant,  or the clinician can place an appropriately sized implant of their choosing.</li>
+	</div>
+	<!-- no-drill steps -->
+	<h3>The 1-Drill Implant Procedure Using the Multi-Drill<sup>&trade;</sup></h3>
+	<div class="steps first one-drill">
+		<aside>
+		<div class="step-cont"><img class="media-image step-img" id="step1a" src="http://osteoready.com/sites/default/files/Osteo-MultiDrill-graphics-01.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step2a" src="http://osteoready.com/sites/default/files/Osteo-MultiDrill-graphics-02.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step3a" src="http://osteoready.com/sites/default/files/Osteo-MultiDrill-graphics-03.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step4a" src="http://osteoready.com/sites/default/files/Osteo-MultiDrill-graphics-04.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step5a" src="http://osteoready.com/sites/default/files/Osteo-MultiDrill-graphics-05.png"></div>
+		</aside>
+		<ol>
+			<li>Traditional multiple drill sequence for osteotomy not needed.</li>
+			<li>Single hole with Multi-Drill<sup>&trade;</sup> completes entire process.</li>
+			<li>Customizable abutment being attached to the implant.</li>
+			<li>Prep abutment and refine the margins before moving on to the final impression.</li>
+			<li>Implant insertion completed using the 3 in 1 implant procedure.</li>
+		</ol>
+	</div>
+	<!-- one-drill steps -->
+	<h3>The OsteoHybrid<sup>&trade;</sup> Implant Procedure</h3>
+	<div class="steps first osteohybrid">
+		<aside>
+		<div class="step-cont"><img class="media-image step-img" id="step1b" src="http://osteoready.com/sites/default/files/Osteo-OsteoHybrid-graphics-01.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step2b" src="http://osteoready.com/sites/default/files/Osteo-OsteoHybrid-graphics-02.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step3b" src="http://osteoready.com/sites/default/files/Osteo-OsteoHybrid-graphics-03.png"></div>
+		</aside>
+		<ol>
+			<li>The apex of the OsteoHybrid<sup>&trade;</sup> is mini sized at 1.8 mm, while the occlusal portion is a conventional 3.75 mm.</li>
+			<li>The OsteoHybrid<sup>&trade;</sup> implant allows for just one drill, acting as a bone condenser to make the ridge accommodate the implant.</li>
+			<li>Works like an osteotome in an efficient manner through its self-tapping design.</li>
+		</ol>
+	</div>
+	<!-- osteolift steps -->
+	<h3>The OsteoLift<sup>&trade;</sup> Procedure</h3>
+	<div class="steps first osteolift">
+		<aside>
+		<div class="step-cont"><img class="media-image step-img" id="step1c" src="http://osteoready.com/sites/default/files/Osteo-OsteoLift-graphics-01.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step2c" src="http://osteoready.com/sites/default/files/Osteo-OsteoLift-graphics-02.png"></div>
+		</aside>
+		<ol>
+			<li>Implant prepared to enter osteotomy site.</li>
+			<li>OsteoLift<sup>&trade;</sup> gently bumps sinus without perforating it.</li>
+		</ol>
+	</div>
+	</article>
+</section>
+
+<section id="overview">
+	<article id="instructor">
+		<img src="http://dcdentalclinical.com/wp-content/uploads/2014/08/Brady-Frank-DDS.jpg" />
+	</article>
+	<article id="course">
+		<h3>Brady Frank, DDS</h3><h3>Clinical Director</h3>
+		<p>Dr. Frank is a highly-regarded general dentist, implant specialist and continuing education trainer; he owns and manages multiple practices geared toward implant dentistry. Dr. Frank is the founder of OsteoReady, a unique implant product line designed for the general practitioner. The OsteoReady Training Centers have been called the best in the industry, and have a track record of increasing the revenue of attendees' dental practices by 26 percent in the first year.</p>
+		<aside><span>Earn 2 free<br />CE credits<br />with dinner.</span><img src="https://osteoready.com/sites/default/files/Osteo-PACEgraphic-02.jpg" /></aside>
+	</article>
+</section>
+<section id="footer">
+	<p>Copyright <a href="https://osteoready.com/">OsteoReady</a> &copy; 2015</p>
+</section>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#procedures article > div').hide();
+	$('#procedures h3').on('click', function(){
+		if ($(this).hasClass('open')){
+			$(this).removeClass('open');
+			$(this).next('div').slideUp();
+		} else {
+			$(this).addClass('open');
+			$(this).next('div').slideDown();
+		}
+	});
+});
+</script>
+</body>
+</html>

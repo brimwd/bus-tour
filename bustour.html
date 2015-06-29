@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>OsteoReady Bus Tour</title>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<style>
+html, body {margin:0;padding:0;font-family:'Open Sans',sans-serif;line-height:1.6em;font-size:15px;}
+header {padding:0 20px;font-size:24px;}
+header article {padding:0;}
+header article a {display:inline-block;padding:5px;}
+header, #footer {background-color:white;}
+#intro {background-color:black;background-image:url('images/footer_lodyas.png');color:#80c1e9;text-align:center;font-size:24px;line-height:1.6em;}
+#intro article {margin:0 5%;}
+#intro h1 {font-size:72px;color:#fff156;text-transform:uppercase;font-weight:normal;line-height:1em;margin:.5em 0;}
+#intro h2 {line-height:1.2em;margin:.5em 0;}
+#intro p {margin:.5em auto;max-width:900px;}
+#intro p.small {font-size:18px;color:#DFF3FF;line-height:1.2em;}
+#intro p:first-of-type {font-style:italic;}
+
+#procedures {border-bottom:4px solid #0e4367;}
+#procedures article {padding:0;max-width:100%;margin:0;background-color:#EFEFEF;}
+#procedures h1 {text-align:center;color:#1a6da0;margin:0;padding:1em 0;border-bottom:1px solid white;font-size:24px;}
+#procedures h3 {text-align:center;background-color:#1a6da0;color:white;margin:0;padding:1em 0;border-bottom:1px solid white;cursor:pointer;}
+#procedures h3 sup {line-height:.8em;}
+#procedures h3:last-of-type {border:none;}
+#procedures h3:hover {background-color:#82bf4e;}
+#procedures article > div {margin:0;}
+#procedures ol {text-align:left;margin:0 auto;max-width:800px;margin-top:20px;padding-bottom:20px;}
+
+.steps {position:relative;margin-bottom:10px;text-align:center;}
+.steps aside {background-color:white;padding:1em 0;}
+.step-cont{height:auto;margin:0;padding:0;text-align:center;display:inline-block;}
+.no-drill .step-cont {width:24%;}
+.one-drill .step-cont {width:19%;}
+.osteohybrid .step-cont {width:32%;}
+.osteolift .step-cont {width:49%;}
+
+#overview {max-width:1200px;width:100%;margin:0 auto;text-align:center;}
+#overview article {width:44%;padding:20px 2%;margin:0 auto;display:inline-block;vertical-align:top;}
+#instructor img {max-width:100%;}
+#instructor {text-align:center;}
+#course h3, #course p {text-align:left;}
+#course span {display:inline-block;background-color:#82bf4e;color:white;padding:8px;border-radius:8px;max-width:30%;text-align:center;margin-right:20px;vertical-align:middle;font-size:18px;}
+#course img {max-width:100px;vertical-align:middle;margin-bottom:15px;}
+
+#region {text-align:right;white-space:nowrap;overflow-x:auto;margin-top:8px;margin-right:8px;}
+#region a {padding:8px 12px;display:inline-block;margin:0 3px;text-align:center;border:2px solid #1a6da0;border-radius:8px;color:#1a6da0;font-weight:bold;background-color:white;}
+#region a:hover, #region a.showing {background-color:#1a6da0;color:white;cursor:pointer;}
+
+#CE {background-color:#fff156;padding:30px;}
+#CE h3 {max-width:800px;color:#333;margin:0 auto;text-align:center;}
+#tour {padding-top:0;}
+
+#locations {text-align:center;background-color:white;border-left:2px solid #1a6da0;} 
+#locations div {background-color:#FAFAFA;padding:10px;display:inline-block;width:40%;text-align:center;}
+.locations {display:none;}
+.locations.showing {display:block;}
+#tour article {width:100%;max-width:100%;padding:0;}
+#map {margin:0;}
+#map iframe {width:100%;min-height:536px;}
+#map-lock {z-index: 10; position: absolute; top: 0; left: 0; width: 100%; height: 536px; color: #FFF;}
+#map-lock a.unlock {position: absolute;text-align: center;display: block;bottom: 22px;left: 52px;width: 130px;line-height: 38px;background-color: rgba(0,0,0,0.4);border-radius: 4px;border: 2px solid white;}
+address a {font-style:normal;text-decoration:none;color:#1a6da0;}
+.map-frame {width:100%;height:536px;position:relative;}
+
+.registerbutton {display:block;border:0px none;border-bottom:2px solid #0e4367;border-radius:3px;background:#1a6da0;color:white;max-width:760px;font-family:'Open Sans',Helvetica,Arial,sans-serif;font-weight:bold;font-size:18px;line-height:50px;padding:0px;margin:25px auto 10px;cursor:pointer;min-height:40px;white-space:normal;text-align:center;}
+.registerbutton:hover {margin-top:27px;border:none;}
+#intro .registerbutton {border:none;}
+#intro .registerbutton:hover {margin-top:25px;background-color:#21AF27;}
+article {max-width:90%;margin:0;padding:2.1em 0;}
+
+#footer {text-align:center;color:white;background-color:#1a6da0;padding:1px;}
+#footer a{color:white;}
+
+@media(max-width:800px){
+	header {padding:0;}
+	article {max-width:90%;}
+	.steps img {max-width:100%;}
+	#overview article {display:block;width:82%;}
+	#overview #course {padding:0;}
+	#course p:first-of-type {margin-top:0;}
+	#registration {text-align:center;}
+	.options {display:inline-block;}
+	#locations {border:none;}
+	#locations aside {display:table;width:100%;}
+	#locations aside.locations {display:none;}
+	#locations aside.showing {display:table;width:100%;}
+	#locations aside div {display:table-cell;width:50%;padding:1em 0;margin:0;}
+	#locations aside:nth-of-type(odd) div:nth-of-type(even), #locations aside:nth-of-type(even) div:nth-of-type(odd) {background-color:white;}
+}
+@media(max-width:600px), only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : portrait) , only screen and (min-device-width : 414px) and (max-device-width : 736px) and (orientation : portrait) , only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : portrait), only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) {
+	#intro h1 {margin:.25em 0;}
+	.steps img {max-height:80px;}
+	#instructor img {float:right;max-width:140px;margin:1em;margin-right:0;}
+	#instructor p, #instructor h3 {margin-left:inherit;}
+}
+@media(min-width:800px){
+	.registerbutton {margin-bottom:30px;}
+	.step-cont {width:auto !important;margin:0 1.5em;}
+	#tour {display:table;width:100%;}
+	#tour article {display:table-cell;vertical-align:top;width:inherit;max-width:inherit;}
+	#registration {width:70% !important;max-width:70% !important;text-align:center;}
+	#registration .options {text-align:left;}
+	#registration .options {display:inline-block;margin:0 auto;}
+	#map iframe {width:100%;min-height:536px;}
+	.map-frame, #map-lock {height:536px;}
+	#locations {width:30%;max-width:30%;}
+	#locations div {width:inherit;max-width:90%;padding:7px 5%;display:block;text-align:left;}
+	#locations div:nth-of-type(even) {background-color:white;}
+	#locations div:first-of-type {margin-top:0;}
+}
+</style>
+<style>/*form*/
+#map-frame {text-align:center;background-color:#FAFAFA;}
+#map-frame h1 {font-size:32px;margin-top:0;padding-top:1em;}
+#map-frame ol {display:inline-block;margin:0 auto 1.5em;text-align:left;padding:0;}
+#map-frame li {line-height:1.8em;}
+#map-frame a {color:#1a6da0;}
+
+form {border-top:2px dashed #1a6da0;background-color:white;text-align:center;}
+
+.infusion-field {margin-left:45px;padding:8px 0;}
+input {height:20px;border:none;border-bottom:1px solid navy;font-size:20px;padding:5px 1% 3px;margin-bottom:5px;display:inline-block;letter-spacing:1px;color:#14445D;}
+.single input {width:90.5%;margin:0 1%;}
+.name input {width:43.5%;margin:0 1%;}
+.name input:last-of-type {margin-left:0;}
+.address input {width:68.5%;margin:0 1%;}
+.address input:last-of-type, #my_data .address input {width:18.5%;margin-left:0;}
+#my_data {margin:0;padding:0 5% 1em;}
+form h2 {text-align:center;}
+#my_data .address input:first-of-type {width:46%;margin-left:1%;}
+
+#my_data label {font-size:1.3em;padding:4px 8px;border-radius:6px;border:2px solid #eeeeee;cursor:pointer;margin-bottom:8px;display:inline-block;}
+#my_data label.selected {background-color:#DFF3FF;border:2px solid #80c1e9;}
+
+.form-column {padding:1em 1em 1.5em;border-top:2px dotted #CDD95B;margin:0 auto;position:relative;}
+.infusion-submit input {padding:12px 30px;font-weight:bold;border-radius:6px;color:#fff;font-size:1.3em;background:#1B6BA0;margin:18px auto 5px;height:inherit;border-bottom:3px solid #124674;cursor:pointer;}
+.infusion-submit input:hover {background-color:#21AF27;border:none;margin-top:21px;}
+@media(max-width:800px){
+	#registration {border-top:4px solid #1a6da0;}
+}
+@media(max-width:600px){
+	.single input, .name input, .name input:last-of-type {display:block;width:90.5%;margin:0 1%;}
+	.name input:last-of-type {margin-top:16px;}
+	#my_data > * {margin-left:1em}
+	#my_data h2 {text-align:center;margin-left:0;}
+}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-38224745-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<header><article><a href="https://osteoready.com/"><img src="https://osteoready.com/sites/default/files/osteoready_logo-final.png" height="60"/></a></article></header>
+
+<section id="intro">
+	<article>
+		<h1>You're Invited</h1>
+		<h2>Simplified &amp; Efficient Implant Placement for the GP</h2>
+		<p>The Top 4 Minimally-Invasive Procedures</p>
+		<p>Find out how dentists across the country are reinvigorating their practices by quickly and efficiently placing a large number of implants.</p>
+		<p class="small">Join esteemed dental professional and implant specialist Dr. Brady Frank for dinner and an exclusive, completely <strong>free 2 hour study session</strong>.</p>
+		<a class="registerbutton">RSVP</a>
+		<p class="small">You'll walk away with 2 CE credits and receive a comprehensive introduction on efficient implants for the general practitioner. Get tailored feedback to your implant technique questions and enjoy a bite of food while you're at it!</p>
+	</article>
+</section>
+
+<section id="procedures">
+	<article>
+	<h1>Study session topics include:</h1>
+	<h3>The No-Drill Implant Procedure</h3>
+	<div class="steps first no-drill">
+		<aside>
+		<div class="step-cont"><img class="media-image step-img" id="step1" src="http://osteoready.com/sites/default/files/OsteoConverter-graphics-01.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step2" src="http://osteoready.com/sites/default/files/OsteoConverter-graphics-02.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step3" src="http://osteoready.com/sites/default/files/OsteoConverter-graphics-03.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step4" src="http://osteoready.com/sites/default/files/OsteoConverter-graphics-04.png"></div>
+		</aside>
+		<ol>
+		<li>Any unrestorable tooth necessitating an extraction.</li>
+		<li>The Osteoconverter<sup>&trade;</sup> is threaded into the socket, acting as both an osteotome and bone condenser.</li>
+		<li><strong>The socket is prepared for an implant three ways:</strong></li>
+			<ol>
+				<li>Converts socket curves and irregularities into a suitable implant site</li>
+				<li>Scores the internal socket wall in 1mm increments providing optimal blood flow for implant healing</li>
+				<li>Expands bone to provide ideal initial implant stability (45Ncm to 65Ncm on average)</li>
+			</ol>
+		<li>The Osteoconverter<sup>&trade;</sup> can also act as an implant. It may be left in the socket as the final implant,  or the clinician can place an appropriately sized implant of their choosing.</li>
+	</div>
+	<!-- no-drill steps -->
+	<h3>The 1-Drill Implant Procedure Using the Multi-Drill<sup>&trade;</sup></h3>
+	<div class="steps first one-drill">
+		<aside>
+		<div class="step-cont"><img class="media-image step-img" id="step1a" src="http://osteoready.com/sites/default/files/Osteo-MultiDrill-graphics-01.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step2a" src="http://osteoready.com/sites/default/files/Osteo-MultiDrill-graphics-02.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step3a" src="http://osteoready.com/sites/default/files/Osteo-MultiDrill-graphics-03.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step4a" src="http://osteoready.com/sites/default/files/Osteo-MultiDrill-graphics-04.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step5a" src="http://osteoready.com/sites/default/files/Osteo-MultiDrill-graphics-05.png"></div>
+		</aside>
+		<ol>
+			<li>Traditional multiple drill sequence for osteotomy not needed.</li>
+			<li>Single hole with Multi-Drill<sup>&trade;</sup> completes entire process.</li>
+			<li>Customizable abutment being attached to the implant.</li>
+			<li>Prep abutment and refine the margins before moving on to the final impression.</li>
+			<li>Implant insertion completed using the 3 in 1 implant procedure.</li>
+		</ol>
+	</div>
+	<!-- one-drill steps -->
+	<h3>The OsteoHybrid<sup>&trade;</sup> Implant Procedure</h3>
+	<div class="steps first osteohybrid">
+		<aside>
+		<div class="step-cont"><img class="media-image step-img" id="step1b" src="http://osteoready.com/sites/default/files/Osteo-OsteoHybrid-graphics-01.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step2b" src="http://osteoready.com/sites/default/files/Osteo-OsteoHybrid-graphics-02.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step3b" src="http://osteoready.com/sites/default/files/Osteo-OsteoHybrid-graphics-03.png"></div>
+		</aside>
+		<ol>
+			<li>The apex of the OsteoHybrid<sup>&trade;</sup> is mini sized at 1.8 mm, while the occlusal portion is a conventional 3.75 mm.</li>
+			<li>The OsteoHybrid<sup>&trade;</sup> implant allows for just one drill, acting as a bone condenser to make the ridge accommodate the implant.</li>
+			<li>Works like an osteotome in an efficient manner through its self-tapping design.</li>
+		</ol>
+	</div>
+	<!-- osteolift steps -->
+	<h3>The OsteoLift<sup>&trade;</sup> Procedure</h3>
+	<div class="steps first osteolift">
+		<aside>
+		<div class="step-cont"><img class="media-image step-img" id="step1c" src="http://osteoready.com/sites/default/files/Osteo-OsteoLift-graphics-01.png"></div>
+		<div class="step-cont"><img class="media-image step-img" id="step2c" src="http://osteoready.com/sites/default/files/Osteo-OsteoLift-graphics-02.png"></div>
+		</aside>
+		<ol>
+			<li>Implant prepared to enter osteotomy site.</li>
+			<li>OsteoLift<sup>&trade;</sup> gently bumps sinus without perforating it.</li>
+		</ol>
+	</div>
+	</article>
+</section>
+
+<!-- <section id="overview">
+	<article id="instructor">
+		<img src="http://dcdentalclinical.com/wp-content/uploads/2014/08/Brady-Frank-DDS.jpg" />
+	</article>
+	<article id="course">
+		<h3>Brady Frank, DDS</h3><h3>Clinical Director</h3>
+		<p>Dr. Frank is a highly-regarded general dentist, implant specialist and continuing education trainer; he owns and manages multiple practices geared toward implant dentistry. Dr. Frank is the founder of OsteoReady, a unique implant product line designed for the general practitioner. The OsteoReady Training Centers have been called the best in the industry, and have a track record of increasing the revenue of attendees' dental practices by 26 percent in the first year.</p>
+		<aside><span>Earn 2 free<br />CE credits<br />with dinner.</span><img src="https://osteoready.com/sites/default/files/Osteo-PACEgraphic-02.jpg" /></aside>
+	</article>
+</section> -->
+
+<section id="CE"><h3>Join us for dinner in New York or Ohio and earn 2 free CE credits</h3></section>
+
+<section id="tour">
+	<article id="registration" class="registration-frame">
+	<div class="options">
+		<h1>Registration options:</h1>
+		<ol>
+			<li>Email <a href="mailto:info@osteoready.com">info@osteoready.com</a>.</li>
+			<li>Call <a href="tel:855.299.0366"><tel>855.299.0366</tel></a>.</li>
+			<li>Text RSVP to <a href="tel:206.971.6052"><tel>206.971.6052</tel></a>.</li>
+			<li>Or complete the form below.</li>
+		</ol>
+	</div>
+	<form accept-charset="UTF-8" action="https://cq151.infusionsoft.com/app/form/process/bd46b4a0d9aea8a6141b6b55aac16c69" class="infusion-form" method="POST">
+		<input name="inf_form_xid" type="hidden" value="bd46b4a0d9aea8a6141b6b55aac16c69" />
+		<input name="inf_form_name" type="hidden" value="Referral LP" />
+		<input name="infusionsoft_version" type="hidden" value="1.40.0.46" />
+		<div id="my_data">
+			<h2>Select your location:</h2>
+			<p class="locations">
+				<label><input id="inf_option_Location_420" name="inf_option_Location" type="radio" value="420" />Queens, NY</label>
+				<label><input id="inf_option_Location_422" name="inf_option_Location" type="radio" value="422" />Cleveland, OH</label>
+				<label><input id="inf_option_Location_424" name="inf_option_Location" type="radio" value="424" />Cincinnati, OH</label>
+			</p>
+			<h2>Fill out your information here:</h2>
+			<div class="infusion-field name">
+				<input class="infusion-field-input-container" id="inf_field_FirstName" name="inf_field_FirstName" type="text" placeholder="First Name *"/>
+				<input class="infusion-field-input-container" id="inf_field_LastName" name="inf_field_LastName" type="text" placeholder="Last Name *"/>
+			</div>
+			<div class="infusion-field single">
+				<input class="infusion-field-input-container" id="inf_field_Email" name="inf_field_Email" type="text" placeholder="Email *"/>
+			</div>
+			<div class="infusion-field single">
+				<input class="infusion-field-input-container" id="inf_field_Phone1" name="inf_field_Phone1" type="tel" placeholder="Phone *"/>
+			</div>
+			<div class="infusion-submit">
+				<input type="submit" value="Register" />
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript" src="https://cq151.infusionsoft.com/app/webTracking/getTrackingCode?trackingId=7e70fd35df9e6043aa828697323e9a29"></script>
+	</article>
+
+	<article id="locations">
+		<aside>
+			<div>Queens, NY<br />
+			July 21 6:30-8:30 PM<br />
+			Riccardo's By The Bridge<br />
+			<address><a href="https://www.google.com/maps/place/Riccardo's+by+the+bridge/@40.7760516,-73.9239814,14z/data=!4m2!3m1!1s0x89c25f5b280c7811:0x6de888d2d7a29499" target="_new">2101 24th Avenue<br />
+			Astoria, Queens NY 11102</a></address></div>
+			<div>Cleveland, OH<br />
+			July 22 6:30-8:30 PM<br />
+			Morton's the Steakhouse<br />
+			<address><a href="https://www.google.com/maps/place/Morton's+The+Steakhouse/@41.4996851,-81.7065961,14z/data=!3m1!5s0x8830f07f00f506af:0x7edf0a3a8d9b543c!4m2!3m1!1s0x8830f07f05515f37:0xa0ed1cb041f9a4ee" target="_new">1600 West 2nd Street<br />
+			Cleveland, OH 44113</a></address></div>
+		</aside>
+		<aside>			
+			<div>Cincinnati, OH<br />
+			July 23 6:30-8:30 PM<br />
+			Boi Na Braza<br />
+			<address><a href="https://www.google.com/maps/place/Boi+Na+Braza+Brazilian+Steak+House/@39.098668,-84.5145721,15z/data=!4m2!3m1!1s0x8841b1505fca852d:0xbc928e0ce14a6acc" target="_new">441 Vine Street<br />
+			Cincinnati, OH 45202</a></address></div>
+		</aside>
+	</article>
+</section>
+<section id="map" class="map-frame">
+	<iframe class="ny locations showing" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24170.89726216755!2d-73.92398144272335!3d40.77605164207566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25f5b280c7811%3A0x6de888d2d7a29499!2sRiccardo&#39;s+by+the+bridge!5e0!3m2!1sen!2sus!4v1435595593840" frameborder="0" width="100%" scrolling="no" style="border:0"></iframe>
+	<iframe class="oh locations" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23905.694293734465!2d-81.70659606967386!3d41.49968508349176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8830f07f05515f37%3A0xa0ed1cb041f9a4ee!2sMorton&#39;s+The+Steakhouse!5e0!3m2!1sen!2sus!4v1435595700502" frameborder="0" width="100%" scrolling="no" style="border:0"></iframe>
+	<iframe class="cin locations" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12385.370673858055!2d-84.51457214008023!3d39.09866802348454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8841b1505fca852d%3A0xbc928e0ce14a6acc!2sBoi+Na+Braza+Brazilian+Steak+House!5e0!3m2!1sen!2sus!4v1435595779104" frameborder="0" width="100%" scrolling="no" style="border:0"></iframe>
+	<div id="map-lock"><!-- <a class="unlock">Unlock Map</a> -->
+		<nav id="region">
+			<a class="ny showing" onclick="tourSwitch('ny')">Queens, NY<br />July 21</a><a class="oh" onclick="tourSwitch('oh')">Cleveland, OH<br />July 22</a><a class="cin" onclick="tourSwitch('cin')">Cincinnati, OH<br />July 23</a>
+		</nav>
+		<!-- <a class="unlock">Unlock Map</a> -->
+	</div>
+</section>
+<section id="footer">
+	<p>Copyright <a href="https://osteoready.com/">OsteoReady</a> &copy; 2015</p>
+</section>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#procedures article > div').hide();
+	$('#procedures h3').on('click', function(){
+		if ($(this).hasClass('open')){
+			$(this).removeClass('open');
+			$(this).next('div').slideUp();
+		} else {
+			$(this).addClass('open');
+			$(this).next('div').slideDown();
+		}
+	});
+	$('.registerbutton').on('click',function(){
+		$('html, body').animate({
+     		scrollTop: $("#my_data").offset().top -115
+   		}, 600);
+	});
+	var $radio = $('#my_data p');
+	$radio.find('input').hide();
+	$($radio).on('click','label',function(){
+		$radio.find('label').removeClass('selected');
+		$(this).addClass('selected');
+	});
+});
+
+var locations = $('.locations');
+function tourSwitch (tourRegion) {
+	$('#region').children().removeClass('showing');
+	locations.removeClass('showing');
+		switch (tourRegion) {
+		case 'ny' : $('.'+tourRegion).addClass('showing'); break;
+		case 'oh' : $('.'+tourRegion).addClass('showing'); break;
+		case 'cin' : $('.'+tourRegion).addClass('showing'); break;
+		default : break;
+	}
+}
+
+/*//Contact page map overlay to prevent accidental map input while scrolling
+  var maplock = $('#map-lock')
+  var mapbutton = maplock.find('a.unlock');
+  mapbutton.on('click', function(){
+    if(maplock.hasClass('unlocked')){
+      maplock.removeClass('unlocked');
+      mapbutton.text('Unlock Map');
+    } else {
+      maplock.addClass('unlocked');
+      mapbutton.text('Lock Map');
+    }
+  });*/
+</script>
+</body>
+</html>
